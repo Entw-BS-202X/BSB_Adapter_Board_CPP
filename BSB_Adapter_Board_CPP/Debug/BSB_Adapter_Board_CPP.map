@@ -3,7 +3,7 @@ Archive member included to satisfy reference by file (symbol)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_divmodhi4.o)
                               Scheduler/tasks.o (__divmodhi4)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodsi4.o)
-                              Drivers/serial/serial.o (__udivmodsi4)
+                              Drivers/adc/adc.o (__udivmodsi4)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
                               C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o (exit)
 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_copy_data.o)
@@ -33,6 +33,15 @@ Discarded input sections
  .text          0x00000000        0x0 Core/main.o
  .data          0x00000000        0x0 Core/main.o
  .bss           0x00000000        0x0 Core/main.o
+ .text          0x00000000        0x0 Drivers/adc/adc.o
+ .data          0x00000000        0x0 Drivers/adc/adc.o
+ .bss           0x00000000        0x0 Drivers/adc/adc.o
+ .text._ZN7AVR_ADC13getResolutionEv
+                0x00000000        0x6 Drivers/adc/adc.o
+ .text._ZN7AVR_ADC10readLatestEv
+                0x00000000       0x2c Drivers/adc/adc.o
+ .text._ZN7AVR_ADC21analogReadOversampledEhh
+                0x00000000       0x7c Drivers/adc/adc.o
  .text          0x00000000        0x0 Drivers/gpio/gpio.o
  .data          0x00000000        0x0 Drivers/gpio/gpio.o
  .bss           0x00000000        0x0 Drivers/gpio/gpio.o
@@ -229,6 +238,7 @@ Address of section .data set to 0x800200
 LOAD C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
 LOAD Board/board.o
 LOAD Core/main.o
+LOAD Drivers/adc/adc.o
 LOAD Drivers/gpio/gpio.o
 LOAD Drivers/lcd/lcd.o
 LOAD Drivers/serial/serial.o
@@ -344,7 +354,7 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000      0xc00
+.text           0x00000000      0xff0
  *(.vectors)
  .vectors       0x00000000       0xe4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
                 0x00000000                __vector_default
@@ -468,129 +478,146 @@ END GROUP
  .text._Z41__static_initialization_and_destruction_0ii
                 0x00000146       0x60 Board/board.o
  .text.Board_Init
-                0x000001a6       0x5a Board/board.o
+                0x000001a6       0x7a Board/board.o
                 0x000001a6                Board_Init
  .text._GLOBAL__sub_I_lcd
-                0x00000200        0xc Board/board.o
- .text.main     0x0000020c       0x10 Core/main.o
-                0x0000020c                main
+                0x00000220        0xc Board/board.o
+ .text.main     0x0000022c       0x10 Core/main.o
+                0x0000022c                main
+ .text._ZN7AVR_ADC4initEhm
+                0x0000023c      0x142 Drivers/adc/adc.o
+                0x0000023c                _ZN7AVR_ADC4initEhm
+ .text._ZN7AVR_ADC12setReferenceEh
+                0x0000037e       0x4a Drivers/adc/adc.o
+                0x0000037e                _ZN7AVR_ADC12setReferenceEh
+ .text._ZN7AVR_ADC13setResolutionEh
+                0x000003c8       0x12 Drivers/adc/adc.o
+                0x000003c8                _ZN7AVR_ADC13setResolutionEh
+ .text._ZN7AVR_ADC10analogReadEh
+                0x000003da       0x7c Drivers/adc/adc.o
+                0x000003da                _ZN7AVR_ADC10analogReadEh
+ .text._ZN7AVR_ADC24analogReadAllOversampledEhPj
+                0x00000456       0x92 Drivers/adc/adc.o
+                0x00000456                _ZN7AVR_ADC24analogReadAllOversampledEhPj
  .text._ZL7get_ddrh
-                0x0000021c       0xa8 Drivers/gpio/gpio.o
+                0x000004e8       0xa8 Drivers/gpio/gpio.o
  .text._ZL8get_porth
-                0x000002c4       0xa8 Drivers/gpio/gpio.o
+                0x00000590       0xa8 Drivers/gpio/gpio.o
  .text._ZL7get_bith
-                0x0000036c        0x4 Drivers/gpio/gpio.o
- .text.pinMode  0x00000370       0x5a Drivers/gpio/gpio.o
-                0x00000370                pinMode
+                0x00000638        0x4 Drivers/gpio/gpio.o
+ .text.pinMode  0x0000063c       0x5a Drivers/gpio/gpio.o
+                0x0000063c                pinMode
  .text.digitalWrite
-                0x000003ca       0x5a Drivers/gpio/gpio.o
-                0x000003ca                digitalWrite
+                0x00000696       0x5a Drivers/gpio/gpio.o
+                0x00000696                digitalWrite
  .text._ZN3LCDC2Ehhhhhhhhhhh
-                0x00000424       0x44 Drivers/lcd/lcd.o
-                0x00000424                _ZN3LCDC1Ehhhhhhhhhhh
-                0x00000424                _ZN3LCDC2Ehhhhhhhhhhh
+                0x000006f0       0x44 Drivers/lcd/lcd.o
+                0x000006f0                _ZN3LCDC1Ehhhhhhhhhhh
+                0x000006f0                _ZN3LCDC2Ehhhhhhhhhhh
  .text._ZN3LCD11pulseEnableEv
-                0x00000468       0x1c Drivers/lcd/lcd.o
-                0x00000468                _ZN3LCD11pulseEnableEv
+                0x00000734       0x1c Drivers/lcd/lcd.o
+                0x00000734                _ZN3LCD11pulseEnableEv
  .text._ZN3LCD4sendEhb
-                0x00000484       0x5c Drivers/lcd/lcd.o
-                0x00000484                _ZN3LCD4sendEhb
+                0x00000750       0x5c Drivers/lcd/lcd.o
+                0x00000750                _ZN3LCD4sendEhb
  .text._ZN3LCD7commandEh
-                0x000004e0        0x6 Drivers/lcd/lcd.o
-                0x000004e0                _ZN3LCD7commandEh
+                0x000007ac        0x6 Drivers/lcd/lcd.o
+                0x000007ac                _ZN3LCD7commandEh
  .text._ZN3LCD9setCursorEhh
-                0x000004e6       0x2e Drivers/lcd/lcd.o
-                0x000004e6                _ZN3LCD9setCursorEhh
+                0x000007b2       0x2e Drivers/lcd/lcd.o
+                0x000007b2                _ZN3LCD9setCursorEhh
  .text._ZN3LCD5writeEh
-                0x00000514        0x6 Drivers/lcd/lcd.o
-                0x00000514                _ZN3LCD5writeEh
+                0x000007e0        0x6 Drivers/lcd/lcd.o
+                0x000007e0                _ZN3LCD5writeEh
  .text._ZN3LCD5printEPKc
-                0x0000051a       0x24 Drivers/lcd/lcd.o
-                0x0000051a                _ZN3LCD5printEPKc
+                0x000007e6       0x24 Drivers/lcd/lcd.o
+                0x000007e6                _ZN3LCD5printEPKc
  .text._ZN3LCD9setupPinsEv
-                0x0000053e       0x42 Drivers/lcd/lcd.o
-                0x0000053e                _ZN3LCD9setupPinsEv
+                0x0000080a       0x42 Drivers/lcd/lcd.o
+                0x0000080a                _ZN3LCD9setupPinsEv
  .text._ZN3LCD5beginEhh
-                0x00000580       0x4c Drivers/lcd/lcd.o
-                0x00000580                _ZN3LCD5beginEhh
+                0x0000084c       0x4c Drivers/lcd/lcd.o
+                0x0000084c                _ZN3LCD5beginEhh
  .text._ZN11SerialClass5beginEm
-                0x000005cc       0xb6 Drivers/serial/serial.o
-                0x000005cc                _ZN11SerialClass5beginEm
+                0x00000898       0xb6 Drivers/serial/serial.o
+                0x00000898                _ZN11SerialClass5beginEm
  .text._ZN11SerialClass5writeEh
-                0x00000682       0x56 Drivers/serial/serial.o
-                0x00000682                _ZN11SerialClass5writeEh
+                0x0000094e       0x56 Drivers/serial/serial.o
+                0x0000094e                _ZN11SerialClass5writeEh
  .text._ZN11SerialClass5printEPKc
-                0x000006d8       0x24 Drivers/serial/serial.o
-                0x000006d8                _ZN11SerialClass5printEPKc
+                0x000009a4       0x24 Drivers/serial/serial.o
+                0x000009a4                _ZN11SerialClass5printEPKc
  .text._ZN11SerialClass7printlnEPKc
-                0x000006fc       0x1a Drivers/serial/serial.o
-                0x000006fc                _ZN11SerialClass7printlnEPKc
+                0x000009c8       0x1a Drivers/serial/serial.o
+                0x000009c8                _ZN11SerialClass7printlnEPKc
  .text._ZN11SerialClass5printEi
-                0x00000716       0x46 Drivers/serial/serial.o
-                0x00000716                _ZN11SerialClass5printEi
+                0x000009e2       0x46 Drivers/serial/serial.o
+                0x000009e2                _ZN11SerialClass5printEi
  .text._ZN11SerialClass7printlnEi
-                0x0000075c       0x1a Drivers/serial/serial.o
-                0x0000075c                _ZN11SerialClass7printlnEi
+                0x00000a28       0x1a Drivers/serial/serial.o
+                0x00000a28                _ZN11SerialClass7printlnEi
  .text.blinkTask
-                0x00000776       0x30 Scheduler/tasks.o
-                0x00000776                blinkTask
+                0x00000a42       0x30 Scheduler/tasks.o
+                0x00000a42                blinkTask
  .text.uart3Task
-                0x000007a6       0x22 Scheduler/tasks.o
-                0x000007a6                uart3Task
- .text.lcdTask  0x000007c8       0x7e Scheduler/tasks.o
-                0x000007c8                lcdTask
+                0x00000a72       0x22 Scheduler/tasks.o
+                0x00000a72                uart3Task
+ .text.lcdTask  0x00000a94       0x7e Scheduler/tasks.o
+                0x00000a94                lcdTask
+ .text.ADCTask  0x00000b12      0x116 Scheduler/tasks.o
+                0x00000b12                ADCTask
  .text._Z41__static_initialization_and_destruction_0ii
-                0x00000846       0x10 Scheduler/scheduler.o
+                0x00000c28       0x10 Scheduler/scheduler.o
  .text._ZN9Scheduler4initEv
-                0x00000856       0x18 Scheduler/scheduler.o
-                0x00000856                _ZN9Scheduler4initEv
+                0x00000c38       0x18 Scheduler/scheduler.o
+                0x00000c38                _ZN9Scheduler4initEv
  .text._ZN9Scheduler5startEv
-                0x0000086e        0x4 Scheduler/scheduler.o
-                0x0000086e                _ZN9Scheduler5startEv
+                0x00000c50        0x4 Scheduler/scheduler.o
+                0x00000c50                _ZN9Scheduler5startEv
  .text._ZN9Scheduler7addTaskEPFvvEhj
-                0x00000872       0x98 Scheduler/scheduler.o
-                0x00000872                _ZN9Scheduler7addTaskEPFvvEhj
+                0x00000c54       0x98 Scheduler/scheduler.o
+                0x00000c54                _ZN9Scheduler7addTaskEPFvvEhj
  .text._ZN9Scheduler4tickEv
-                0x0000090a       0xb8 Scheduler/scheduler.o
-                0x0000090a                _ZN9Scheduler4tickEv
+                0x00000cec       0xb8 Scheduler/scheduler.o
+                0x00000cec                _ZN9Scheduler4tickEv
  .text._ZN9Scheduler3runEv
-                0x000009c2       0x98 Scheduler/scheduler.o
-                0x000009c2                _ZN9Scheduler3runEv
+                0x00000da4       0x98 Scheduler/scheduler.o
+                0x00000da4                _ZN9Scheduler3runEv
  .text.__vector_21
-                0x00000a5a       0x52 Scheduler/scheduler.o
-                0x00000a5a                __vector_21
+                0x00000e3c       0x52 Scheduler/scheduler.o
+                0x00000e3c                __vector_21
  .text._ZN9Scheduler5beginEv
-                0x00000aac       0x3c Scheduler/scheduler.o
-                0x00000aac                _ZN9Scheduler5beginEv
+                0x00000e8e       0x4a Scheduler/scheduler.o
+                0x00000e8e                _ZN9Scheduler5beginEv
  .text._GLOBAL__sub_I_scheduler
-                0x00000ae8        0xc Scheduler/scheduler.o
+                0x00000ed8        0xc Scheduler/scheduler.o
  .text.libgcc.div
-                0x00000af4       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_divmodhi4.o)
-                0x00000af4                _div
-                0x00000af4                __divmodhi4
+                0x00000ee4       0x26 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_divmodhi4.o)
+                0x00000ee4                _div
+                0x00000ee4                __divmodhi4
  .text.libgcc.div
-                0x00000b1a       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodsi4.o)
-                0x00000b1a                __udivmodsi4
+                0x00000f0a       0x44 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodsi4.o)
+                0x00000f0a                __udivmodsi4
  .text.libgcc.div
-                0x00000b5e       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodhi4.o)
-                0x00000b5e                __udivmodhi4
- .text.libgcc   0x00000b86       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_tablejump2.o)
-                0x00000b86                __tablejump2__
+                0x00000f4e       0x28 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_udivmodhi4.o)
+                0x00000f4e                __udivmodhi4
+ .text.libgcc   0x00000f76       0x10 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_tablejump2.o)
+                0x00000f76                __tablejump2__
  .text.avr-libc
-                0x00000b96       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(itoa_ncheck.o)
-                0x00000b96                __itoa_ncheck
+                0x00000f86       0x14 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(itoa_ncheck.o)
+                0x00000f86                __itoa_ncheck
  .text.avr-libc
-                0x00000baa       0x32 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(utoa_ncheck.o)
-                0x00000baa                __utoa_ncheck
-                0x00000bac                __utoa_common
+                0x00000f9a       0x32 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(utoa_ncheck.o)
+                0x00000f9a                __utoa_ncheck
+                0x00000f9c                __utoa_common
  .text.avr-libc
-                0x00000bdc       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(strrev.o)
-                0x00000bdc                strrev
-                0x00000bfc                . = ALIGN (0x2)
+                0x00000fcc       0x20 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr6\libc.a(strrev.o)
+                0x00000fcc                strrev
+                0x00000fec                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000bfc        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
-                0x00000bfc                _exit
-                0x00000bfc                exit
+ .fini9         0x00000fec        0x0 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+                0x00000fec                _exit
+                0x00000fec                exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -609,67 +636,71 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000bfc        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
+ .fini0         0x00000fec        0x4 c:/program files (x86)/atmel/studio/7.0/toolchain/avr8/avr8-gnu-toolchain/bin/../lib/gcc/avr/5.4.0/avr6\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000c00                _etext = .
+                0x00000ff0                _etext = .
 
-.data           0x00800200       0x48 load address 0x00000c00
+.data           0x00800200       0xa0 load address 0x00000ff0
                 0x00800200                PROVIDE (__data_start, .)
  *(.data)
  *(.data*)
+ .data.adc      0x00800200        0x2 Drivers/adc/adc.o
+                0x00800200                adc
  *(.gnu.linkonce.d*)
  *(.rodata)
+ .rodata        0x00800202        0xe Drivers/adc/adc.o
  *(.rodata*)
  .rodata.str1.1
-                0x00800200       0x23 Board/board.o
+                0x00800210       0x23 Board/board.o
  .rodata._ZZN3LCD9setCursorEhhE13row_offsets_2
-                0x00800223        0x2 Drivers/lcd/lcd.o
+                0x00800233        0x2 Drivers/lcd/lcd.o
  .rodata._ZZN3LCD9setCursorEhhE13row_offsets_4
-                0x00800225        0x4 Drivers/lcd/lcd.o
+                0x00800235        0x4 Drivers/lcd/lcd.o
  .rodata.str1.1
-                0x00800229       0x1e Scheduler/tasks.o
+                0x00800239       0x66 Scheduler/tasks.o
+                                 0x67 (size before relaxing)
  *(.gnu.linkonce.r*)
-                0x00800248                . = ALIGN (0x2)
- *fill*         0x00800247        0x1 
-                0x00800248                _edata = .
-                0x00800248                PROVIDE (__data_end, .)
+                0x008002a0                . = ALIGN (0x2)
+ *fill*         0x0080029f        0x1 
+                0x008002a0                _edata = .
+                0x008002a0                PROVIDE (__data_end, .)
 
-.bss            0x00800248       0x74
-                0x00800248                PROVIDE (__bss_start, .)
+.bss            0x008002a0       0x74
+                0x008002a0                PROVIDE (__bss_start, .)
  *(.bss)
  *(.bss*)
- .bss.lcd       0x00800248        0xd Board/board.o
-                0x00800248                lcd
- .bss.Serial3   0x00800255        0x1 Drivers/serial/serial.o
-                0x00800255                Serial3
- .bss.Serial2   0x00800256        0x1 Drivers/serial/serial.o
-                0x00800256                Serial2
- .bss.Serial1   0x00800257        0x1 Drivers/serial/serial.o
-                0x00800257                Serial1
- .bss.Serial    0x00800258        0x1 Drivers/serial/serial.o
-                0x00800258                Serial
+ .bss.lcd       0x008002a0        0xd Board/board.o
+                0x008002a0                lcd
+ .bss.Serial3   0x008002ad        0x1 Drivers/serial/serial.o
+                0x008002ad                Serial3
+ .bss.Serial2   0x008002ae        0x1 Drivers/serial/serial.o
+                0x008002ae                Serial2
+ .bss.Serial1   0x008002af        0x1 Drivers/serial/serial.o
+                0x008002af                Serial1
+ .bss.Serial    0x008002b0        0x1 Drivers/serial/serial.o
+                0x008002b0                Serial
  .bss._ZZ7lcdTaskE4time
-                0x00800259        0x4 Scheduler/tasks.o
+                0x008002b1        0x4 Scheduler/tasks.o
  .bss._ZZ9uart3TaskE11uartCounter
-                0x0080025d        0x1 Scheduler/tasks.o
+                0x008002b5        0x1 Scheduler/tasks.o
  .bss._ZZ9blinkTaskE5state
-                0x0080025e        0x1 Scheduler/tasks.o
+                0x008002b6        0x1 Scheduler/tasks.o
  .bss.schedulerTickCount
-                0x0080025f        0x4 Scheduler/scheduler.o
-                0x0080025f                schedulerTickCount
+                0x008002b7        0x4 Scheduler/scheduler.o
+                0x008002b7                schedulerTickCount
  .bss.scheduler
-                0x00800263       0x59 Scheduler/scheduler.o
-                0x00800263                scheduler
+                0x008002bb       0x59 Scheduler/scheduler.o
+                0x008002bb                scheduler
  *(COMMON)
-                0x008002bc                PROVIDE (__bss_end, .)
-                0x00000c00                __data_load_start = LOADADDR (.data)
-                0x00000c48                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00800314                PROVIDE (__bss_end, .)
+                0x00000ff0                __data_load_start = LOADADDR (.data)
+                0x00001090                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x008002bc        0x0
+.noinit         0x00800314        0x0
                 [!provide]                PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                PROVIDE (__noinit_end, .)
-                0x008002bc                _end = .
+                0x00800314                _end = .
                 [!provide]                PROVIDE (__heap_start, .)
 
 .eeprom         0x00810000        0x0
@@ -714,6 +745,7 @@ END GROUP
  .comment       0x00000000       0x30 Board/board.o
                                  0x31 (size before relaxing)
  .comment       0x00000030       0x31 Core/main.o
+ .comment       0x00000030       0x31 Drivers/adc/adc.o
  .comment       0x00000030       0x31 Drivers/gpio/gpio.o
  .comment       0x00000030       0x31 Drivers/lcd/lcd.o
  .comment       0x00000030       0x31 Drivers/serial/serial.o
@@ -740,95 +772,104 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x00000000      0x238
+.debug_aranges  0x00000000      0x298
  *(.debug_aranges)
  .debug_aranges
                 0x00000000       0x30 Board/board.o
  .debug_aranges
                 0x00000030       0x20 Core/main.o
  .debug_aranges
-                0x00000050       0x50 Drivers/gpio/gpio.o
+                0x00000050       0x58 Drivers/adc/adc.o
  .debug_aranges
-                0x000000a0       0x88 Drivers/lcd/lcd.o
+                0x000000a8       0x50 Drivers/gpio/gpio.o
  .debug_aranges
-                0x00000128       0x58 Drivers/serial/serial.o
+                0x000000f8       0x88 Drivers/lcd/lcd.o
  .debug_aranges
-                0x00000180       0x30 Scheduler/tasks.o
+                0x00000180       0x58 Drivers/serial/serial.o
  .debug_aranges
-                0x000001b0       0x88 Scheduler/scheduler.o
+                0x000001d8       0x38 Scheduler/tasks.o
+ .debug_aranges
+                0x00000210       0x88 Scheduler/scheduler.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x00000000     0x3c79
+.debug_info     0x00000000     0x471d
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x00000000      0xbbc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_info    0x00000bbc      0x8bc Board/board.o
- .debug_info    0x00001478      0x2f5 Core/main.o
- .debug_info    0x0000176d      0x287 Drivers/gpio/gpio.o
- .debug_info    0x000019f4      0xc3c Drivers/lcd/lcd.o
- .debug_info    0x00002630      0x5c3 Drivers/serial/serial.o
- .debug_info    0x00002bf3      0x66a Scheduler/tasks.o
- .debug_info    0x0000325d      0xa1c Scheduler/scheduler.o
+ .debug_info    0x00000bbc      0xa81 Board/board.o
+ .debug_info    0x0000163d      0x2f5 Core/main.o
+ .debug_info    0x00001932      0x53a Drivers/adc/adc.o
+ .debug_info    0x00001e6c      0x287 Drivers/gpio/gpio.o
+ .debug_info    0x000020f3      0xc3c Drivers/lcd/lcd.o
+ .debug_info    0x00002d2f      0x5c3 Drivers/serial/serial.o
+ .debug_info    0x000032f2      0x9e5 Scheduler/tasks.o
+ .debug_info    0x00003cd7      0xa46 Scheduler/scheduler.o
 
-.debug_abbrev   0x00000000     0x197f
+.debug_abbrev   0x00000000     0x1ba1
  *(.debug_abbrev)
  .debug_abbrev  0x00000000      0xb1a C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_abbrev  0x00000b1a      0x294 Board/board.o
- .debug_abbrev  0x00000dae      0x14a Core/main.o
- .debug_abbrev  0x00000ef8       0xf1 Drivers/gpio/gpio.o
- .debug_abbrev  0x00000fe9      0x2a7 Drivers/lcd/lcd.o
- .debug_abbrev  0x00001290      0x1ef Drivers/serial/serial.o
- .debug_abbrev  0x0000147f      0x249 Scheduler/tasks.o
- .debug_abbrev  0x000016c8      0x2b7 Scheduler/scheduler.o
+ .debug_abbrev  0x00000b1a      0x2a5 Board/board.o
+ .debug_abbrev  0x00000dbf      0x14a Core/main.o
+ .debug_abbrev  0x00000f09      0x1e3 Drivers/adc/adc.o
+ .debug_abbrev  0x000010ec       0xf1 Drivers/gpio/gpio.o
+ .debug_abbrev  0x000011dd      0x2a7 Drivers/lcd/lcd.o
+ .debug_abbrev  0x00001484      0x1ef Drivers/serial/serial.o
+ .debug_abbrev  0x00001673      0x277 Scheduler/tasks.o
+ .debug_abbrev  0x000018ea      0x2b7 Scheduler/scheduler.o
 
-.debug_line     0x00000000     0x17a7
+.debug_line     0x00000000     0x1c4e
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x00000000      0x1fa C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_line    0x000001fa      0x2cc Board/board.o
- .debug_line    0x000004c6      0x151 Core/main.o
- .debug_line    0x00000617      0x34c Drivers/gpio/gpio.o
- .debug_line    0x00000963      0x427 Drivers/lcd/lcd.o
- .debug_line    0x00000d8a      0x374 Drivers/serial/serial.o
- .debug_line    0x000010fe      0x21b Scheduler/tasks.o
- .debug_line    0x00001319      0x48e Scheduler/scheduler.o
+ .debug_line    0x000001fa      0x32d Board/board.o
+ .debug_line    0x00000527      0x151 Core/main.o
+ .debug_line    0x00000678      0x31b Drivers/adc/adc.o
+ .debug_line    0x00000993      0x34c Drivers/gpio/gpio.o
+ .debug_line    0x00000cdf      0x427 Drivers/lcd/lcd.o
+ .debug_line    0x00001106      0x374 Drivers/serial/serial.o
+ .debug_line    0x0000147a      0x340 Scheduler/tasks.o
+ .debug_line    0x000017ba      0x494 Scheduler/scheduler.o
 
-.debug_frame    0x00000000      0x5cc
+.debug_frame    0x00000000      0x744
  *(.debug_frame)
  .debug_frame   0x00000000       0x6c Board/board.o
  .debug_frame   0x0000006c       0x24 Core/main.o
- .debug_frame   0x00000090       0xbc Drivers/gpio/gpio.o
- .debug_frame   0x0000014c      0x16c Drivers/lcd/lcd.o
- .debug_frame   0x000002b8       0xe8 Drivers/serial/serial.o
- .debug_frame   0x000003a0       0x54 Scheduler/tasks.o
- .debug_frame   0x000003f4      0x1d8 Scheduler/scheduler.o
+ .debug_frame   0x00000090      0x148 Drivers/adc/adc.o
+ .debug_frame   0x000001d8       0xbc Drivers/gpio/gpio.o
+ .debug_frame   0x00000294      0x16c Drivers/lcd/lcd.o
+ .debug_frame   0x00000400       0xe8 Drivers/serial/serial.o
+ .debug_frame   0x000004e8       0x84 Scheduler/tasks.o
+ .debug_frame   0x0000056c      0x1d8 Scheduler/scheduler.o
 
-.debug_str      0x00000000      0xd15
+.debug_str      0x00000000      0xf0e
  *(.debug_str)
  .debug_str     0x00000000      0x3e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/gcc/dev/atmega2560/avr6/crtatmega2560.o
- .debug_str     0x000003e6      0x6cf Board/board.o
-                                0x720 (size before relaxing)
- .debug_str     0x00000ab5       0x16 Core/main.o
+ .debug_str     0x000003e6      0x855 Board/board.o
+                                0x8a6 (size before relaxing)
+ .debug_str     0x00000c3b       0x16 Core/main.o
                                 0x3e7 (size before relaxing)
- .debug_str     0x00000acb       0x4f Drivers/gpio/gpio.o
+ .debug_str     0x00000c51       0x78 Drivers/adc/adc.o
+                                0x3e8 (size before relaxing)
+ .debug_str     0x00000cc9       0x4a Drivers/gpio/gpio.o
                                 0x236 (size before relaxing)
- .debug_str     0x00000b1a       0x70 Drivers/lcd/lcd.o
+ .debug_str     0x00000d13       0x65 Drivers/lcd/lcd.o
                                 0x444 (size before relaxing)
- .debug_str     0x00000b8a       0x65 Drivers/serial/serial.o
+ .debug_str     0x00000d78       0x65 Drivers/serial/serial.o
                                 0x374 (size before relaxing)
- .debug_str     0x00000bef       0x51 Scheduler/tasks.o
-                                0x4f2 (size before relaxing)
- .debug_str     0x00000c40       0xd5 Scheduler/scheduler.o
+ .debug_str     0x00000ddd       0x5c Scheduler/tasks.o
+                                0x698 (size before relaxing)
+ .debug_str     0x00000e39       0xd5 Scheduler/scheduler.o
                                 0x600 (size before relaxing)
 
-.debug_loc      0x00000000     0x1bdd
+.debug_loc      0x00000000     0x2290
  *(.debug_loc)
  .debug_loc     0x00000000      0x166 Board/board.o
- .debug_loc     0x00000166      0x678 Drivers/gpio/gpio.o
- .debug_loc     0x000007de      0x895 Drivers/lcd/lcd.o
- .debug_loc     0x00001073      0x494 Drivers/serial/serial.o
- .debug_loc     0x00001507       0x87 Scheduler/tasks.o
- .debug_loc     0x0000158e      0x64f Scheduler/scheduler.o
+ .debug_loc     0x00000166      0x607 Drivers/adc/adc.o
+ .debug_loc     0x0000076d      0x678 Drivers/gpio/gpio.o
+ .debug_loc     0x00000de5      0x895 Drivers/lcd/lcd.o
+ .debug_loc     0x0000167a      0x494 Drivers/serial/serial.o
+ .debug_loc     0x00001b0e      0x133 Scheduler/tasks.o
+ .debug_loc     0x00001c41      0x64f Scheduler/scheduler.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -848,15 +889,16 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x00000000      0x1c8
+.debug_ranges   0x00000000      0x218
  *(.debug_ranges)
  .debug_ranges  0x00000000       0x20 Board/board.o
  .debug_ranges  0x00000020       0x10 Core/main.o
- .debug_ranges  0x00000030       0x40 Drivers/gpio/gpio.o
- .debug_ranges  0x00000070       0x78 Drivers/lcd/lcd.o
- .debug_ranges  0x000000e8       0x48 Drivers/serial/serial.o
- .debug_ranges  0x00000130       0x20 Scheduler/tasks.o
- .debug_ranges  0x00000150       0x78 Scheduler/scheduler.o
+ .debug_ranges  0x00000030       0x48 Drivers/adc/adc.o
+ .debug_ranges  0x00000078       0x40 Drivers/gpio/gpio.o
+ .debug_ranges  0x000000b8       0x78 Drivers/lcd/lcd.o
+ .debug_ranges  0x00000130       0x48 Drivers/serial/serial.o
+ .debug_ranges  0x00000178       0x28 Scheduler/tasks.o
+ .debug_ranges  0x000001a0       0x78 Scheduler/scheduler.o
 
 .debug_macro
  *(.debug_macro)

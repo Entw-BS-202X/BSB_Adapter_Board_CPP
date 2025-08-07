@@ -6,6 +6,8 @@ Board\board.cpp
 
 Core\main.cpp
 
+Drivers\adc\adc.cpp
+
 Drivers\gpio\gpio.cpp
 
 Drivers\lcd\lcd.cpp

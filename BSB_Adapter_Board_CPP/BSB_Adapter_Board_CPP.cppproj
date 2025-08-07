@@ -147,6 +147,7 @@
       <Value>C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Drivers\serial</Value>
       <Value>C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Drivers\gpio</Value>
       <Value>C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Drivers\lcd</Value>
+      <Value>C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Drivers\adc</Value>
     </ListValues>
   </avrgcccpp.compiler.directories.IncludePaths>
   <avrgcccpp.compiler.optimization.level>Optimize debugging experience (-Og)</avrgcccpp.compiler.optimization.level>
@@ -178,6 +179,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Core\main.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Drivers\adc\adc.cpp">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Drivers\adc\adc.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="Drivers\gpio\gpio.cpp">
@@ -217,9 +224,8 @@
     <Folder Include="Board" />
     <Folder Include="Drivers\gpio" />
     <Folder Include="Drivers\lcd" />
-    <Folder Include="Drivers\timer" />
+    <Folder Include="Drivers\adc" />
     <Folder Include="Drivers\serial" />
-    <Folder Include="Drivers\uart" />
     <Folder Include="Scheduler" />
   </ItemGroup>
   <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />

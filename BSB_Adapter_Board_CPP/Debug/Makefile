@@ -38,9 +38,8 @@ SUBDIRS :=  \
 ../Board \
 ../Drivers/gpio \
 ../Drivers/lcd \
-../Drivers/timer \
+../Drivers/adc \
 ../Drivers/serial \
-../Drivers/uart \
 ../Scheduler
 
 
@@ -48,6 +47,7 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../Board/board.cpp \
 ../Core/main.cpp \
+../Drivers/adc/adc.cpp \
 ../Drivers/gpio/gpio.cpp \
 ../Drivers/lcd/lcd.cpp \
 ../Drivers/serial/serial.cpp \
@@ -64,6 +64,7 @@ ASM_SRCS +=
 OBJS +=  \
 Board/board.o \
 Core/main.o \
+Drivers/adc/adc.o \
 Drivers/gpio/gpio.o \
 Drivers/lcd/lcd.o \
 Drivers/serial/serial.o \
@@ -73,6 +74,7 @@ Scheduler/scheduler.o
 OBJS_AS_ARGS +=  \
 Board/board.o \
 Core/main.o \
+Drivers/adc/adc.o \
 Drivers/gpio/gpio.o \
 Drivers/lcd/lcd.o \
 Drivers/serial/serial.o \
@@ -82,6 +84,7 @@ Scheduler/scheduler.o
 C_DEPS +=  \
 Board/board.d \
 Core/main.d \
+Drivers/adc/adc.d \
 Drivers/gpio/gpio.d \
 Drivers/lcd/lcd.d \
 Drivers/serial/serial.d \
@@ -91,6 +94,7 @@ Scheduler/scheduler.d
 C_DEPS_AS_ARGS +=  \
 Board/board.d \
 Core/main.d \
+Drivers/adc/adc.d \
 Drivers/gpio/gpio.d \
 Drivers/lcd/lcd.d \
 Drivers/serial/serial.d \
@@ -114,49 +118,56 @@ LINKER_SCRIPT_DEP+=
 Board/board.o: ../Board/board.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\adc"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Core/main.o: ../Core/main.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\adc"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+Drivers/adc/adc.o: ../Drivers/adc/adc.cpp
+	@echo Building file: $<
+	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\adc"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Drivers/gpio/gpio.o: ../Drivers/gpio/gpio.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\adc"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Drivers/lcd/lcd.o: ../Drivers/lcd/lcd.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\adc"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Drivers/serial/serial.o: ../Drivers/serial/serial.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\adc"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Scheduler/tasks.o: ../Scheduler/tasks.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\adc"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 
 Scheduler/scheduler.o: ../Scheduler/scheduler.cpp
 	@echo Building file: $<
 	@echo Invoking: AVR8/GNU C Compiler : 5.4.0
-	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	$(QUOTE)C:\Program Files (x86)\Atmel\Studio\7.0\toolchain\avr8\avr8-gnu-toolchain\bin\avr-g++.exe$(QUOTE) -funsigned-char -funsigned-bitfields -DDEBUG  -I"C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\include" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Board" -I"C:\Users\PC_Entwicklung\Documents\Atmel Studio\7.0\BSB_Adapter_Board_CPP\BSB_Adapter_Board_CPP\Core" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\timer\TIMER0~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\SCHEDU~1" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\serial" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\gpio" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\lcd" -I"C:\Users\PC_ENT~1\DOCUME~1\ATMELS~1\7.0\BSB_AD~4\BSB_AD~1\Drivers\adc"  -Og -std=c++11 -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -mrelax -g2 -Wall -mmcu=atmega2560 -B "C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\gcc\dev\atmega2560" -c -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
 	@echo Finished building: $<
 	
 

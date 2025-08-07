@@ -6,9 +6,11 @@ extern "C" {
 	#endif
 
 	// Function declarations for scheduled tasks
+	
 	void blinkTask(void);
 	void uart3Task(void);
 	void lcdTask(void);
+	void ADCTask(void);
 
 	#ifdef __cplusplus
 }

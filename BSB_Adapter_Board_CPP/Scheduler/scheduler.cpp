@@ -158,11 +158,11 @@ bool vTaskDelayUntil(uint32_t* lastWakeTick, uint16_t periodTicks) {
 	return false;
 }
 
-
 void Scheduler::begin() {
 	init();
-	addTask(blinkTask, 2, 150);
-	addTask(uart3Task, 1, 500);
+	addTask(blinkTask, 2, 150); 
+	addTask(uart3Task, 1, 1000);
 	addTask(lcdTask,3, 1000);
+	addTask(ADCTask,1,1000);
 	start();
 }

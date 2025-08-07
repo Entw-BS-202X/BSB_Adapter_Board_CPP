@@ -1,9 +1,11 @@
+
 #include "board.h"
 #include "gpio.h"
 #include "serial.h"
-#include <util/delay.h>
 #include "scheduler.h"
 #include "lcd.h"
+#include "adc.h"
+#include <util/delay.h>
 
 /**
  * @brief Initializes all essential hardware components of the board.
@@ -17,7 +19,6 @@
  */
 
 LCD lcd(APG1, APB4, APE6, APH0, APH1, APH2, APH3, APH4 , APH5, APH6, APH7);
-
 
 void Board_Init(void)
 {
@@ -40,13 +41,16 @@ void Board_Init(void)
 	
     // init_adc();
 	
+    
+    adc.init(ADC_MODE_SINGLE);		  // Use default: 125 kHz ADC clock, single conversion mode
+    adc.setReference(MODE_AVCC);      
+    adc.setResolution(10);
+	  
+	
     // init_lcd();
+	
 	lcd.begin(16,2);
 	_delay_ms(100);
-	
-	
-	
-	
 	
 	
     // init_buttons();

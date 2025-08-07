@@ -6,8 +6,9 @@
 #define F_CPU 16000000UL
 #endif
 
-#include "scheduler.h"
+//#include "scheduler.h"
 #include "lcd.h"
+#include "adc.h"
 
 // Define the LED pin using a custom macro (e.g., APB7 style)
 #define LED_P2 APB7

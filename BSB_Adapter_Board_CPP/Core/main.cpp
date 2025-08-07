@@ -1,8 +1,7 @@
 
 #include "board.h"
 #include "scheduler.h"
-#include "lcd.h"
-
+	  
 int main(void) {
 	
 	Board_Init();       // Set up GPIOs, peripherals
